@@ -3,7 +3,17 @@
 
 # import frappe
 from frappe.model.document import Document
-
+import frappe
+import boto3
 
 class FileManager(Document):
-	pass
+
+    def before_save(self):
+        frappe.msgprint(
+            f"""
+            <b>Boto3 hoạt động thành công!</b><br>
+            Version: {boto3.__version__}
+            """,
+            title="Wasabi Integration",
+            indicator="green"
+        )
